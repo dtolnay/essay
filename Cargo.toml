@@ -1,0 +1,8 @@
+[package]
+name = "dtolnay"
+version = "0.0.3"
+authors = ["David Tolnay <dtolnay@gmail.com>"]
+license = "MIT OR Apache-2.0"
+description = "docs.rs as a publishing platform?"
+documentation = "https://docs.rs/dtolnay"
+edition = "2018"
