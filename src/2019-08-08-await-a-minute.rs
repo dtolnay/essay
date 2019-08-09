@@ -125,7 +125,7 @@ svc.add_module(ProfileModule)?;
 svc.serve().await?;
 ```
 
-As yourself: if I wanted to insert a fallible call (maybe synchronous, maybe
+Ask yourself: if I wanted to insert a fallible call (maybe synchronous, maybe
 asynchronous) between some pair of those existing calls, how long would it take
 me to figure out the right combinator in the top code? How long would it take in
 the bottom code?
