@@ -112,7 +112,7 @@ Real Code snippet, before and after introducing await.
 let mut svc = ServiceFramework::new("email_validator_service", thrift, port).unwrap();
 let add_modules = svc
     .add_module(BuildModule)
-    .and_then(|_| svc.add_module(StatsModule))
+    .and_then(|_| svc.add_module(ThriftStatsModule))
     .and_then(|_| svc.add_module(ProfileModule));
 future::result(add_modules).and_then(|_| svc.serve())
 ```
