@@ -6,3 +6,6 @@ license = "MIT OR Apache-2.0"
 description = "docs.rs as a publishing platform?"
 documentation = "https://docs.rs/dtolnay"
 edition = "2018"
+
+[dev-dependencies]
+futures = "0.1"

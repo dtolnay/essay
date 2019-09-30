@@ -45,7 +45,65 @@ serialized request, parses out the request arguments, hands them off to some
 logic that determines what to respond back, and serializes that outgoing
 response.
 
-```ignore
+```
+# use futures::{future, Future, IntoFuture};
+#
+# struct Error;
+# struct Res;
+# type ProtocolEncodedFinal<P> = <<P as Protocol>::Deserializer as Deserializer>::EncodedFinal;
+#
+# trait Protocol: 'static {
+#     type Deserializer: Deserializer;
+# }
+#
+# trait Deserializer: Clone + Send {
+#     type EncodedFinal;
+# }
+#
+# enum MessageType {
+#     Reply,
+# }
+#
+# impl Res {
+#     fn write<D>(&self, _de: &mut D) -> Result<D::EncodedFinal, Error>
+#     where
+#         D: Deserializer,
+#     {
+#         unimplemented!()
+#     }
+# }
+#
+# fn write_message<D, F>(
+#     _protocol: D,
+#     _method: &str,
+#     _type: MessageType,
+#     _write: F,
+# ) -> Result<(), Error>
+# where
+#     D: Deserializer,
+#     F: FnOnce(&mut D) -> Result<D::EncodedFinal, Error>,
+# {
+#     unimplemented!()
+# }
+#
+# struct Example<P> {
+#     service: Service,
+#     protocol: P,
+# }
+#
+# struct Service;
+#
+# impl Service {
+#     fn get_counters(&self, args: ()) -> impl Future<Item = Res, Error = Error> {
+#         future::ok(Res)
+#     }
+# }
+#
+# impl<P> Example<P>
+# where
+#     P: Protocol,
+#     P::Deserializer: Deserializer<EncodedFinal = ()>,
+# {
 fn handle_get_counters(
     &self,
     p: &mut P::Deserializer,
@@ -61,6 +119,7 @@ fn handle_get_counters(
     // a Result which we chain along, so that we can ultimately return a single
     // Future type.
     let ret = ret.map(|res| { // Result<Future<Res, Exn>, E>
+        # let p = p.clone();
         // res: Future<Res, Exn>
         res.then(move |res| {
             res.and_then(move |res| write_message(
@@ -70,6 +129,7 @@ fn handle_get_counters(
     }); // Result<Future<Bytes, E>, E>
     ret.into_future().flatten()
 }
+# }
 ```
 
 At a high level this function is doing something extremely basic: do some
