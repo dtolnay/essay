@@ -45,7 +45,7 @@ serialized request, parses out the request arguments, hands them off to some
 logic that determines what to respond back, and serializes that outgoing
 response.
 
-```
+```ignore
 fn handle_get_counters(
     &self,
     p: &mut P::Deserializer,
@@ -85,7 +85,7 @@ Here is the same code after introducing async/await in the server library. The
 structure pops out immediately. There is some fallible synchronous work, then
 the fallible asynchronous call, and some fallible synchronous work at the end.
 
-```
+```ignore
 async fn handle_get_counters(
     &self,
     p: &mut P::Deserializer,
@@ -108,7 +108,7 @@ a big relief at any level of experience.
 The error handling complexity of futures appears everywhere. Here is another
 Real Code snippet, before and after introducing await.
 
-```
+```ignore
 let mut svc = ServiceFramework::new("email_validator_service", thrift, port).unwrap();
 let add_modules = svc
     .add_module(BuildModule)
@@ -117,7 +117,7 @@ let add_modules = svc
 future::result(add_modules).and_then(|_| svc.serve())
 ```
 
-```
+```ignore
 let mut svc = ServiceFramework::new("email_validator_service", thrift, port)?;
 svc.add_module(BuildModule)?;
 svc.add_module(ThriftStatsModule)?;
@@ -150,7 +150,7 @@ complicated. Consider some asynchronous call that we want to repeat while some
 asynchronous function returns true, the equivalent of this trivial await
 snippet:
 
-```
+```ignore
 while keep_going().await {
     do_the_thing().await?;
 }
@@ -167,7 +167,7 @@ futures. Here is some Real Code that is one part of a 195-line state machine
 that could be replaced by a far clearer 12 line async fn with identical behavior
 and performance.
 
-```
+```ignore
 fn poll_next(state: EncodeState<W>) -> (Poll<W, Error>, EncodeState<W>) {
     match state {
         EncodeState::Start(mut start_state) => {
