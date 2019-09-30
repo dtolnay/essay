@@ -3,3 +3,6 @@
 
 #[path = "2019-08-08-await-a-minute.rs"]
 mod _01;
+
+#[path = "2019-10-01-reference-types.rs"]
+mod _02;
