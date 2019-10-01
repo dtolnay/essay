@@ -259,12 +259,37 @@ future::result(add_modules).and_then(|_| svc.serve())
 # ;
 ```
 
-```ignore
+```
+# struct ServiceFramework;
+# struct BuildModule;
+# struct ThriftStatsModule;
+# struct ProfileModule;
+#
+# impl ServiceFramework {
+#     fn new(name: &str, thrift: (), port: ()) -> Result<Self, ()> {
+#         unimplemented!()
+#     }
+#
+#     fn add_module<M>(&mut self, module: M) -> Result<(), ()> {
+#         unimplemented!()
+#     }
+#
+#     async fn serve(&mut self) -> Result<(), ()> {
+#         unimplemented!()
+#     }
+# }
+#
+# async fn try_main() -> Result<(), ()> {
+# let thrift = ();
+# let port = ();
+#
 let mut svc = ServiceFramework::new("email_validator_service", thrift, port)?;
 svc.add_module(BuildModule)?;
 svc.add_module(ThriftStatsModule)?;
 svc.add_module(ProfileModule)?;
 svc.serve().await?;
+#     Ok(())
+# }
 ```
 
 Ask yourself: if I wanted to insert a fallible call (maybe synchronous, maybe
