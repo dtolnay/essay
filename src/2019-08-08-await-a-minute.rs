@@ -145,7 +145,63 @@ Here is the same code after introducing async/await in the server library. The
 structure pops out immediately. There is some fallible synchronous work, then
 the fallible asynchronous call, and some fallible synchronous work at the end.
 
-```ignore
+```
+# struct Error;
+# struct Res;
+# type ProtocolEncodedFinal<P> = <<P as Protocol>::Deserializer as Deserializer>::EncodedFinal;
+#
+# trait Protocol {
+#     type Deserializer: Deserializer;
+# }
+#
+# trait Deserializer {
+#     type EncodedFinal;
+# }
+#
+# enum MessageType {
+#     Reply,
+# }
+#
+# impl Res {
+#     fn write<D>(&self, _de: &mut D) -> Result<D::EncodedFinal, Error>
+#     where
+#         D: Deserializer,
+#     {
+#         unimplemented!()
+#     }
+# }
+#
+# fn write_message<D, F>(
+#     _protocol: &mut D,
+#     _method: &str,
+#     _type: MessageType,
+#     _write: F,
+# ) -> Result<(), Error>
+# where
+#     D: Deserializer,
+#     F: FnOnce(&mut D) -> Result<D::EncodedFinal, Error>,
+# {
+#     unimplemented!()
+# }
+#
+# struct Example<P> {
+#     service: Service,
+#     protocol: P,
+# }
+#
+# struct Service;
+#
+# impl Service {
+#     async fn get_counters(&self, args: ()) -> Result<Res, Error> {
+#         unimplemented!()
+#     }
+# }
+#
+# impl<P> Example<P>
+# where
+#     P: Protocol,
+#     P::Deserializer: Deserializer<EncodedFinal = ()>,
+# {
 async fn handle_get_counters(
     &self,
     p: &mut P::Deserializer,
@@ -155,6 +211,7 @@ async fn handle_get_counters(
     let enc = write_message(p, "getCounters", MessageType::Reply, |p| res.write(p))?;
     Ok(enc)
 }
+# }
 ```
 
 Rather than tetrising together a bunch of `map` and `and_then` and `flatten`
