@@ -317,10 +317,21 @@ complicated. Consider some asynchronous call that we want to repeat while some
 asynchronous function returns true, the equivalent of this trivial await
 snippet:
 
-```ignore
+```
+# async fn keep_going() -> bool {
+#     unimplemented!()
+# }
+#
+# async fn do_the_thing() -> Result<(), ()> {
+#     unimplemented!()
+# }
+#
+# async fn try_main() -> Result<(), ()> {
 while keep_going().await {
     do_the_thing().await?;
 }
+#     Ok(())
+# }
 ```
 
 Even something this basic would be a challenge to express with `Future`
