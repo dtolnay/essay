@@ -345,7 +345,57 @@ futures. Here is some Real Code that is one part of a 195-line state machine
 that could be replaced by a far clearer 12 line async fn with identical behavior
 and performance.
 
-```ignore
+```
+# use futures::{Async, Future, Poll};
+#
+# enum EncodeState<W> {
+#     Start(StartFut),
+#     Part((), ()),
+#     EndOfStream((), ()),
+#     Finish(W),
+#     Done,
+#     Invalid,
+# }
+#
+# struct CompressedRead<W>(W);
+#
+# struct Error;
+#
+# struct StartFut;
+#
+# impl StartFut {
+#     fn finish(self) -> ((), ()) {
+#         unimplemented!()
+#     }
+# }
+#
+# impl Future for StartFut {
+#     type Item = ();
+#     type Error = Error;
+#     fn poll(&mut self) -> Poll<Self::Item, Self::Error> {
+#         unimplemented!()
+#     }
+# }
+#
+# struct Example<W>(W);
+#
+# impl<W> Example<W> {
+#     fn poll_next_part(iter: (), sink: ()) -> (Poll<W, Error>, EncodeState<W>) {
+#         unimplemented!()
+#     }
+#
+#     fn poll_part(part_fut: (), iter: ()) -> (Poll<W, Error>, EncodeState<W>) {
+#         unimplemented!()
+#     }
+#
+#     fn poll_eos(sink: (), eos_written: ()) -> (Poll<W, Error>, EncodeState<W>) {
+#         unimplemented!()
+#     }
+#
+#     fn poll_finish(_: CompressedRead<W>) -> (Poll<W, Error>, EncodeState<W>) {
+#         unimplemented!()
+#     }
+#
 fn poll_next(state: EncodeState<W>) -> (Poll<W, Error>, EncodeState<W>) {
     match state {
         EncodeState::Start(mut start_state) => {
@@ -371,6 +421,7 @@ fn poll_next(state: EncodeState<W>) -> (Poll<W, Error>, EncodeState<W>) {
         EncodeState::Invalid => panic!("polled future after it returned an error"),
     }
 }
+# }
 ```
 
 In contrast to library-based control flow and handwritten futures, the
