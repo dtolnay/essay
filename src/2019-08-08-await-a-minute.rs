@@ -225,13 +225,38 @@ a big relief at any level of experience.
 The error handling complexity of futures appears everywhere. Here is another
 Real Code snippet, before and after introducing await.
 
-```ignore
+```
+# use futures::{future, Future};
+#
+# struct ServiceFramework;
+# struct BuildModule;
+# struct ThriftStatsModule;
+# struct ProfileModule;
+#
+# impl ServiceFramework {
+#     fn new(name: &str, thrift: (), port: ()) -> Result<Self, ()> {
+#         Ok(ServiceFramework)
+#     }
+#
+#     fn add_module<M>(&mut self, module: M) -> Result<(), ()> {
+#         Ok(())
+#     }
+#
+#     fn serve(&mut self) -> impl Future<Error = ()> {
+#         future::ok(())
+#     }
+# }
+#
+# let thrift = ();
+# let port = ();
+#
 let mut svc = ServiceFramework::new("email_validator_service", thrift, port).unwrap();
 let add_modules = svc
     .add_module(BuildModule)
     .and_then(|_| svc.add_module(ThriftStatsModule))
     .and_then(|_| svc.add_module(ProfileModule));
 future::result(add_modules).and_then(|_| svc.serve())
+# ;
 ```
 
 ```ignore
