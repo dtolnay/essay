@@ -6,3 +6,6 @@ mod _01;
 
 #[path = "2019-10-01-reference-types.rs"]
 mod _02;
+
+#[path = "2019-12-09-soundness-bugs.rs"]
+mod _03;
