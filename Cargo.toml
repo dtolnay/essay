@@ -4,6 +4,7 @@ version = "0.0.7"
 authors = ["David Tolnay <dtolnay@gmail.com>"]
 license = "MIT OR Apache-2.0"
 description = "docs.rs as a publishing platform?"
+repository = "https://github.com/dtolnay/essay"
 documentation = "https://docs.rs/dtolnay"
 edition = "2018"
 
