@@ -1,6 +1,6 @@
 /** # Triage at scale for the Rust team
 
-<sup>*by [David Tolnay]&#8202;,&ensp;2020.20.02*</sup>
+<sup>*by [David Tolnay]&#8202;,&ensp;2020.02.20*</sup>
 
 [David Tolnay]: https://github.com/dtolnay
 
