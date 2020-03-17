@@ -13,3 +13,6 @@ travis-ci = { repository = "dtolnay/essay" }
 
 [dev-dependencies]
 futures = "0.1"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
