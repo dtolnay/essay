@@ -8,9 +8,6 @@ repository = "https://github.com/dtolnay/essay"
 documentation = "https://docs.rs/dtolnay"
 edition = "2018"
 
-[badges]
-travis-ci = { repository = "dtolnay/essay" }
-
 [dev-dependencies]
 futures = "0.1"
 
