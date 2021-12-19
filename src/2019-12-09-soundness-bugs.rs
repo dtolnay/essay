@@ -78,7 +78,7 @@ library code, consider a C function that we want to make callable from Rust.
 # const IGNORE: &str = stringify! {
 // Requires arg != 10.
 // If arg is 10, we stomp on yer memery.
-void frob(int arg);
+void frob(int32_t arg);
 # };
 ```
 
@@ -108,10 +108,10 @@ documentation of C frob, and be confident that the system is sound.
 
 ```
 # mod ffi {
-#     pub unsafe fn frob(_arg: isize) {}
+#     pub unsafe fn frob(_arg: i32) {}
 # }
 #
-pub fn frob(arg: isize) {
+pub fn frob(arg: i32) {
     assert!(arg != 10);
     unsafe { ffi::frob(arg) }
 }
@@ -125,7 +125,7 @@ limited set of values that we can represent by a Rust enum:
 
 ```
 # mod ffi {
-#     pub unsafe fn frob(_arg: isize) {}
+#     pub unsafe fn frob(_arg: i32) {}
 # }
 #
 pub enum FrobLevel {
@@ -136,7 +136,7 @@ pub enum FrobLevel {
 }
 
 pub fn frob(level: FrobLevel) {
-    let arg = level as isize;
+    let arg = level as i32;
     unsafe { ffi::frob(arg) }
 }
 ```
@@ -146,11 +146,11 @@ the caller in cases that cannot be enforced in a low level library.
 
 ```
 # mod ffi {
-#     pub unsafe fn frob(_arg: isize) {}
+#     pub unsafe fn frob(_arg: i32) {}
 # }
 #
 // Safety: caller must ensure arg != 10.
-pub unsafe fn frob_unchecked(arg: isize) {
+pub unsafe fn frob_unchecked(arg: i32) {
     ffi::frob(arg)
 }
 ```
@@ -162,10 +162,10 @@ documentation on your C function.
 
 ```
 # mod ffi {
-#     pub unsafe fn frob(_arg: isize) {}
+#     pub unsafe fn frob(_arg: i32) {}
 # }
 #
-pub fn frob(arg: isize) {
+pub fn frob(arg: i32) {
     // UNSOUND
     unsafe { ffi::frob(arg) }
 }
