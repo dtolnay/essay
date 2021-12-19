@@ -134,7 +134,7 @@ announcement][announced] and the [Triagebot wiki][wiki] for additional details.
 #[macro_export]
 macro_rules! _04__triage_scale {
     ({
-        date:  "Feburary 20, 2020",
+        date:  "February 20, 2020",
         author:  "David Tolnay",
     }) => {};
 }
