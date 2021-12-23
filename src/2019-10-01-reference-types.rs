@@ -112,7 +112,7 @@ You give it a u32 value, and it atomically changes the number inside the
 static COUNTER: AtomicU32 = AtomicU32::new(0);
 
 fn reset() {
-    COUNTER.store(0, Ordering::SeqCst);
+    COUNTER.store(0, Ordering::Release);
 }
 ```
 
