@@ -46,7 +46,7 @@ logic that determines what to respond back, and serializes that outgoing
 response.
 
 ```
-# use futures::{future, Future, IntoFuture};
+# use futures01::{future, Future, IntoFuture};
 #
 # struct Error;
 # struct Res;
@@ -226,7 +226,7 @@ The error handling complexity of futures appears everywhere. Here is another
 Real Code snippet, before and after introducing await.
 
 ```
-# use futures::{future, Future};
+# use futures01::{future, Future};
 #
 # struct ServiceFramework;
 # struct BuildModule;
@@ -346,7 +346,7 @@ that could be replaced by a far clearer 12 line async fn with identical behavior
 and performance.
 
 ```
-# use futures::{Async, Future, Poll};
+# use futures01::{Async, Future, Poll};
 #
 # enum EncodeState<W> {
 #     Start(StartFut),

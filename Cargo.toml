@@ -9,7 +9,7 @@ documentation = "https://docs.rs/dtolnay"
 edition = "2018"
 
 [dev-dependencies]
-futures = "0.1"
+futures01 = { package = "futures", version = "0.1" }
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
