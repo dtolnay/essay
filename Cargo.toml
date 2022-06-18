@@ -6,7 +6,7 @@ license = "MIT OR Apache-2.0"
 description = "docs.rs as a publishing platform?"
 repository = "https://github.com/dtolnay/essay"
 documentation = "https://docs.rs/dtolnay"
-edition = "2018"
+edition = "2021"
 
 [dev-dependencies]
 futures01 = { package = "futures", version = "0.1" }
