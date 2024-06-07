@@ -1,3 +1,5 @@
+//! Essays by David Tolnay
+
 #![allow(non_snake_case)]
 #![doc(html_logo_url = "https://raw.githubusercontent.com/dtolnay/essay/avatar/avatar.png")]
 
