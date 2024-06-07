@@ -1,6 +1,6 @@
 [package]
 name = "dtolnay"
-version = "0.0.12"
+version = "0.0.13"
 authors = ["David Tolnay <dtolnay@gmail.com>"]
 description = "docs.rs as a publishing platform?"
 documentation = "https://docs.rs/dtolnay"
