@@ -17,7 +17,7 @@ jobs:
     uses: dtolnay/.github/.github/workflows/pre_ci.yml@master
 
   test:
-    name: Rust ${{matrix.rust}}
+    name: Test
     needs: pre_ci
     if: needs.pre_ci.outputs.continue
     runs-on: ubuntu-latest
