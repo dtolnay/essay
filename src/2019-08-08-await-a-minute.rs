@@ -33,9 +33,9 @@ type. Methods like [`.map(...)`], [`.then(...)`], and [`.or_else(...)`] allow
 acting on the success value or the error value of the computation so far, some
 of them synchronously and other asynchronously.
 
-[`.map(...)`]: https://docs.rs/futures/0.1.28/futures/future/trait.Future.html#method.map
-[`.then(...)`]: https://docs.rs/futures/0.1.28/futures/future/trait.Future.html#method.then
-[`.or_else(...)`]: https://docs.rs/futures/0.1.28/futures/future/trait.Future.html#method.or_else
+[`.map(...)`]: futures01::Future::map
+[`.then(...)`]: futures01::Future::then
+[`.or_else(...)`]: futures01::Future::or_else
 
 Here is an example of `Future` combinators in action. This snippet is Real Code.
 I have lightly simplified it to omit irrelevant details, but all but one of the
@@ -220,7 +220,7 @@ that we write `.await` after asynchronous things and `?` after fallible things.
 This is code that a beginner could write and a beginner could maintain, but it's
 a big relief at any level of experience.
 
-[ridiculous signatures]: https://docs.rs/futures/0.1.28/futures/future/trait.Future.html#method.flatten
+[ridiculous signatures]: futures01::Future::flatten
 
 The error handling complexity of futures appears everywhere. Here is another
 Real Code snippet, before and after introducing await.
@@ -465,8 +465,6 @@ Similar to how `Mutex` is a safe Sync-maker (wrapping something that is not
 data, while still being `'static` overall and thus spawnable on a thread pool or
 other executor. Aaron walks through an example of this involving asynchronously
 filling a buffer &mdash; check it out.
-
-[Sync]: https://doc.rust-lang.org/std/marker/trait.Sync.html
 
 <br>
 

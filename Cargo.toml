@@ -9,7 +9,7 @@ keywords = ["dtolnay", "blog"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/dtolnay/essay"
 
-[dev-dependencies]
+[dependencies]
 futures01 = { package = "futures", version = "0.1" }
 
 [package.metadata.docs.rs]

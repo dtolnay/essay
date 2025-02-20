@@ -91,7 +91,7 @@ the beginner's mental model of Rust references. Let's take a look at the `store`
 method of [`AtomicU32`] from the standard library as one example of this. The
 signature is:
 
-[`AtomicU32`]: https://doc.rust-lang.org/std/sync/atomic/struct.AtomicU32.html
+[`AtomicU32`]: core::sync::atomic::AtomicU32
 
 ```
 # struct AtomicU32;
@@ -255,7 +255,7 @@ properties and requirements as appropriate to different use cases.
 (Fundamentally Rust is a language for building safe abstractions, and this is
 one of the areas where that is most apparent.)
 
-[`UnsafeCell<T>`]: https://doc.rust-lang.org/std/cell/struct.UnsafeCell.html
+[`UnsafeCell<T>`]: core::cell::UnsafeCell
 
 Beyond atomics, other safe abstractions in the standard library built on
 interior mutability include:
@@ -295,10 +295,10 @@ interior mutability include:
       only while no other references are being used for reading; accesses will
       block to meet these requirements.
 
-[`Cell<T>`]: https://doc.rust-lang.org/std/cell/struct.Cell.html
-[`RefCell<T>`]: https://doc.rust-lang.org/std/cell/struct.RefCell.html
-[`Mutex<T>`]: https://doc.rust-lang.org/std/sync/struct.Mutex.html
-[`RwLock<T>`]: https://doc.rust-lang.org/std/sync/struct.RwLock.html
+[`Cell<T>`]: core::cell::Cell
+[`RefCell<T>`]: core::cell::RefCell
+[`Mutex<T>`]: std::sync::Mutex
+[`RwLock<T>`]: std::sync::RwLock
 */
 #[macro_export]
 macro_rules! _02__reference_types {
