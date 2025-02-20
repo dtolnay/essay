@@ -82,7 +82,7 @@ void frob(int32_t arg);
 # };
 ```
 
-An impractical safe language might decide that we just don't support calling C. 
+An impractical safe language might decide that we just don't support calling C.
 Any C code can potentially do whatever in a way that is not visible to our safe
 language's compiler, so the only way to uphold any meaningful safety guarantee
 on the whole program is by forbidding calling C.
