@@ -26,6 +26,12 @@ jobs:
       - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@nightly
       - run: cargo test
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: Cargo.lock
+          path: Cargo.lock
+        continue-on-error: true
 
   rustdoc:
     name: Rustdoc
